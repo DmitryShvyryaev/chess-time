@@ -209,11 +209,13 @@ public class Controller implements MouseListener, MouseMotionListener, ActionLis
 
     @Override
     public void mousePressed(MouseEvent e) {
-        int[] coord = getAvailableCoordinates(e.getX(), e.getY());
-        model.setActiveFigure(coord[0], coord[1]);
-        if (model.isFigureChanged()) {
-            view.updateView();
-            view.doBeforeMoving(e.getX() / 80, e.getY() / 80, e.getX(), e.getY());
+        if (!model.isGameStopped()) {
+            int[] coord = getAvailableCoordinates(e.getX(), e.getY());
+            model.setActiveFigure(coord[0], coord[1]);
+            if (model.isFigureChanged()) {
+                view.updateView();
+                view.doBeforeMoving(e.getX() / 80, e.getY() / 80, e.getX(), e.getY());
+            }
         }
     }
 

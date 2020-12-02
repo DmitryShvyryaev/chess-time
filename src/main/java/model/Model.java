@@ -216,11 +216,7 @@ public class Model {
     private void saveState() {
         previosGameField.push(getGameFieldCopy());
         previosTurn.push(turn);
-        try {
-            previousEatenFigures.push(eatenFigures.clone());
-        } catch (CloneNotSupportedException e) {
-            //ignored
-        }
+        previousEatenFigures.push(eatenFigures.clone());
     }
 
     public void rollBack(boolean setNull) {

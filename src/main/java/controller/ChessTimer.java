@@ -13,7 +13,7 @@ public class ChessTimer implements Runnable {
     private FigureColor active = FigureColor.WHITE;
     private Controller controller;
     private View view;
-    private boolean isStopped = false;
+    private boolean isStopped;
     private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("mm:ss");
     private Thread currentThread;
 

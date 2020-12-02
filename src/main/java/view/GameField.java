@@ -6,6 +6,7 @@ import model.TypeOfFigure;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 import static model.FigureColor.*;
 
@@ -136,7 +137,7 @@ public class GameField extends JLayeredPane {
     }
 
     public void doBeforeMoving(int x, int y, int eX, int eY) {
-        deltaX = -(eX % 80);
+        deltaX = -(eX % 80) + 10;
         deltaY = -(eY % 80);
         movingLabel.setLocation(eX + deltaX, eY + deltaY);
         movingLabel.setForeground(model.getActiveFigure().color == WHITE ? Color.WHITE : Color.BLACK);

@@ -49,19 +49,14 @@ public class EatenFigures implements Serializable, Cloneable {
     }
 
     private TreeMap<TypeOfFigure, Integer> getSortedMap(HashMap<TypeOfFigure, Integer> map) {
-        TreeMap<TypeOfFigure, Integer> sorted = new TreeMap<>(new Comparator<TypeOfFigure>() {
-            @Override
-            public int compare(TypeOfFigure o1, TypeOfFigure o2) {
-                return new Integer(o2.ordinal()).compareTo(o1.ordinal());
-            }
-        });
+        TreeMap<TypeOfFigure, Integer> sorted = new TreeMap<>((o1, o2) -> Integer.compare(o2.ordinal(), o1.ordinal()));
         sorted.putAll(map);
         return sorted;
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        EatenFigures copy =  new EatenFigures(whiteFigures.clone(), blackFigures.clone());
-        return (Object) copy;
+    protected Object clone() {
+        return new EatenFigures(whiteFigures.clone(), blackFigures.clone());
     }
+
 }
