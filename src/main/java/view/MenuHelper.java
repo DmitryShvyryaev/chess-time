@@ -6,6 +6,8 @@ import controller.listeners.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class MenuHelper {
     public static void initFileMenu(JMenuBar parent,  Controller controller) {
@@ -21,8 +23,7 @@ public class MenuHelper {
         JMenu colorMenu = new JMenu("Цвет");
         ColorListener colorListener = new ColorListener(view);
         ButtonGroup bg = addJCheckBoxGroup(colorMenu, colorListener ,
-                ColorTheme.getTranslate(view.getColorTheme()),
-                "Коричневый", "Красный", "Синий", "Зеленый", "Золотой");
+                view.getColorTheme().getTranslate(), ColorTheme.getTranslatedValues());
         parent.add(colorMenu);
     }
 
@@ -56,8 +57,8 @@ public class MenuHelper {
     public static void initImageMenu(JMenuBar parent, View view) {
         JMenu imageMenu = new JMenu("Иконки");
         ImageListener listener = new ImageListener(view);
-        addJCheckBoxGroup(imageMenu, listener, ImageHelper.Style.getTranslate(view.getFigureStyle()),
-                ImageHelper.Style.getTranslateValues());
+        addJCheckBoxGroup(imageMenu, listener, view.getFigureStyle().toString(),
+                FigureStyle.getThanslatedsValues());
         parent.add(imageMenu);
     }
 

@@ -1,59 +1,40 @@
 package view;
 
 import java.awt.*;
+import java.util.stream.IntStream;
 
 public enum ColorTheme {
-    BROWN,
-    RED,
-    BLUE,
-    GREEN,
-    GOLD;
+    BROWN("Коричневый", new Color(217, 190, 171), new Color(161, 108, 72)),
+    RED("Красный", new Color(255, 203, 187), new Color(224, 90, 63)),
+    BLUE("Синий", new Color(191, 209, 224), new Color(87, 136, 179)),
+    GREEN("Зеленый", new Color(197, 204, 192), new Color(120, 134, 107)),
+    GOLD("Золотой", new Color(255, 236, 194), new Color(255, 187, 41));
 
-    public static Color getDarkColor(ColorTheme theme) {
-        switch (theme) {
-            case BROWN:
-                return new Color(161, 108, 72);
-            case RED:
-                return new Color(224, 90, 63);
-            case BLUE:
-                return new Color(87, 136, 179);
-            case GREEN:
-                return new Color(120, 134, 107);
-            case GOLD:
-                return new Color(255, 187, 41);
-        }
-        return new Color(128, 76, 45);
+    private String translate;
+    private Color lightColor;
+    private Color darkColor;
+
+    ColorTheme(String translate, Color lightColor, Color darkColor) {
+        this.translate = translate;
+        this.lightColor = lightColor;
+        this.darkColor = darkColor;
     }
 
-    public static Color getLightColor(ColorTheme theme) {
-        switch (theme) {
-            case BROWN:
-                return new Color(217, 190, 171);
-            case RED:
-                return new Color(255, 203, 187);
-            case BLUE:
-                return new Color(191, 209, 224);
-            case GREEN:
-                return new Color(197, 204, 192);
-            case GOLD:
-                return new Color(255, 236, 194);
-        }
-        return new Color(128, 76, 45);
+    public String getTranslate() {
+        return translate;
     }
 
-    public static String getTranslate(ColorTheme theme) {
-        switch (theme) {
-            case BROWN:
-                return "Коричневый";
-            case RED:
-                return "Красный";
-            case BLUE:
-                return "Синий";
-            case GREEN:
-                return "Зеленый";
-            case GOLD:
-                return "Золотой";
-        }
-        return null;
+    public Color getLightColor() {
+        return lightColor;
+    }
+
+    public Color getDarkColor() {
+        return darkColor;
+    }
+
+    public static String[] getTranslatedValues() {
+        String[] result = new String[ColorTheme.values().length];
+        IntStream.range(0, 5).forEach(i -> result[i] = ColorTheme.values()[i].getTranslate());
+        return result;
     }
 }

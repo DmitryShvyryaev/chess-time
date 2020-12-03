@@ -58,7 +58,7 @@ public class GameField extends JLayeredPane {
                 labels[i][j].setPreferredSize(new Dimension(View.CELL_SIZE, View.CELL_SIZE));
                 if (model.getAllFigure()[i][j].color == WHITE)
                     labels[i][j].setForeground(Color.WHITE);
-                if (view.getFigureStyle() == ImageHelper.Style.STYLE_1)
+                if (view.getFigureStyle() == FigureStyle.STYLE_1)
                     labels[i][j].setText(ImageHelper.getCharForFigure(model.getAllFigure()[i][j].type,
                             model.getAllFigure()[i][j].color, false));
                 else if (model.getAllFigure()[i][j].type != TypeOfFigure.EMPTY) {
@@ -80,7 +80,7 @@ public class GameField extends JLayeredPane {
     }
 
     public Color getCellColor(int x, int y) {
-        Color c = (x + y) % 2 == 0 ? ColorTheme.getLightColor(view.getColorTheme()) : ColorTheme.getDarkColor(view.getColorTheme());
+        Color c = (x + y) % 2 == 0 ? view.getColorTheme().getLightColor() : view.getColorTheme().getDarkColor();
         return c;
     }
 
@@ -96,7 +96,7 @@ public class GameField extends JLayeredPane {
                 if (model.getAllFigure()[i][j].type == TypeOfFigure.EMPTY) {
                     labels[y][x].setIcon(null);
                     labels[y][x].setText("");
-                } else if (view.getFigureStyle() == ImageHelper.Style.STYLE_1) {
+                } else if (view.getFigureStyle() == FigureStyle.STYLE_1) {
                     labels[y][x].setForeground(model.getAllFigure()[i][j].color == WHITE ? Color.WHITE : Color.BLACK);
                     labels[y][x].setIcon(null);
                     labels[y][x].setText(ImageHelper.getCharForFigure(model.getAllFigure()[i][j].type,

@@ -1,5 +1,6 @@
 package controller.listeners;
 
+import view.FigureStyle;
 import view.View;
 import view.ImageHelper;
 
@@ -16,7 +17,7 @@ public class ImageListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        view.setFigureStyle(ImageHelper.Style.getStyleByTranslate(command));
+        view.setFigureStyle(FigureStyle.getStyleByTranslate(command));
         view.updateView();
     }
 }

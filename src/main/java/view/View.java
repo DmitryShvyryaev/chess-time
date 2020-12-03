@@ -17,7 +17,7 @@ public class View extends JFrame {
     private final Controller controller;
     private boolean markActiveFields = true;
     private boolean reverseView = false;
-    private ImageHelper.Style figureStyle = ImageHelper.Style.STYLE_1;
+    private FigureStyle figureStyle = FigureStyle.STYLE_1;
 
     public View(final Model model, Controller controller)  {
         this.controller = controller;
@@ -29,7 +29,7 @@ public class View extends JFrame {
         if (controller.getRes().containsKey("reverseView"))
             reverseView = Boolean.parseBoolean(controller.getRes().getProperty("reverseView"));
         if (controller.getRes().containsKey("figureStyle"))
-            figureStyle = ImageHelper.Style.valueOf(controller.getRes().getProperty("figureStyle"));
+            figureStyle = FigureStyle.valueOf(controller.getRes().getProperty("figureStyle"));
         initView();
         initMenuBar();
         initGameField();
@@ -76,11 +76,11 @@ public class View extends JFrame {
         return reverseView;
     }
 
-    public void setFigureStyle(ImageHelper.Style figureStyle) {
+    public void setFigureStyle(FigureStyle figureStyle) {
         this.figureStyle = figureStyle;
     }
 
-    public ImageHelper.Style getFigureStyle() {
+    public FigureStyle getFigureStyle() {
         return figureStyle;
     }
 

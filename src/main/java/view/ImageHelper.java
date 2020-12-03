@@ -11,12 +11,12 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 
 public class ImageHelper {
-    private static final HashMap<Style, HashMap<FigureColor, HashMap<TypeOfFigure, Image>>> imageContainer = new HashMap<>();
-    private static final HashMap<Style, HashMap<FigureColor, HashMap<TypeOfFigure, ImageIcon>>> iconContainer = new HashMap<>();
+    private static final HashMap<FigureStyle, HashMap<FigureColor, HashMap<TypeOfFigure, Image>>> imageContainer = new HashMap<>();
+    private static final HashMap<FigureStyle, HashMap<FigureColor, HashMap<TypeOfFigure, ImageIcon>>> iconContainer = new HashMap<>();
     private static final String pathToRes = URLDecoder.decode(ClassLoader.getSystemResource("image").getFile().replaceFirst("/", "") + "/");
 
     static {
-        for (Style s : Style.values()) {
+        for (FigureStyle s : FigureStyle.values()) {
             if (s.ordinal() == 0)
                 continue;
             HashMap<FigureColor, HashMap<TypeOfFigure, Image>> imageContainer1 = new HashMap<>();
@@ -85,38 +85,13 @@ public class ImageHelper {
         return null;
     }
 
-    public static Image getImage(Figure f, Style style) {
+    public static Image getImage(Figure f, FigureStyle style) {
         return imageContainer.get(style).get(f.color).get(f.type);
     }
 
-    public static ImageIcon getIcon(Figure f, Style style) {
+    public static ImageIcon getIcon(Figure f, FigureStyle style) {
         if (f.type == TypeOfFigure.EMPTY || f.color == null)
             return null;
         return iconContainer.get(style).get(f.color).get(f.type);
-    }
-
-    public enum Style {
-        STYLE_1,
-        STYLE_2,
-        STYLE_3,
-        STYLE_4,
-        STYLE_5;
-
-        public static String getTranslate(Style s) {
-            return "Стиль " + (s.ordinal() + 1);
-        }
-
-        public static String[] getTranslateValues() {
-            String[] values = new String[Style.values().length];
-            for (int i = 0; i < values.length; i++) {
-                values[i] = getTranslate(Style.values()[i]);
-            }
-            return values;
-        }
-
-        public static Style getStyleByTranslate(String text) {
-            int number = Integer.parseInt(text.substring(text.length() - 1));
-            return Style.valueOf("STYLE_" + number);
-        }
     }
 }
