@@ -57,7 +57,7 @@ public class MenuHelper {
     public static void initImageMenu(JMenuBar parent, View view) {
         JMenu imageMenu = new JMenu("Иконки");
         ImageListener listener = new ImageListener(view);
-        addJCheckBoxGroup(imageMenu, listener, view.getFigureStyle().toString(),
+        addJCheckBoxGroup(imageMenu, listener, view.getFigureStyle().getTranslate(),
                 FigureStyle.getThanslatedsValues());
         parent.add(imageMenu);
     }
